@@ -80,7 +80,7 @@ const App = () => {
       <Header text = "Notes"/>
       <Notification message ={notifcation}/>
       <AddingForm handleChangeText={handleChangeText} handleSubmit={handleSubmit}/>
-      <button onClick={handleShowAll}>show {showAll ? "only important " : "all" }</button>
+      <button onClick={handleShowAll} className="toggle-button" >show {showAll ? "only important " : "all" }</button>
       <Notes data ={notesToShow} handleDelete ={handleDelete} handleImportanceChange ={handleImportanceChange}/>
       
 

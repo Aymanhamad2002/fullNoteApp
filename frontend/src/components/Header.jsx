@@ -1,5 +1,5 @@
 const Header = ({text}) => {
-    return (<div>
+    return (<div className="header">
         <h1>{text}</h1>
     </div>)
 }

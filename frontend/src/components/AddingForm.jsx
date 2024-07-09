@@ -1,6 +1,6 @@
 const AddingForm  = ({handleSubmit,handleChangeText}) =>{
     return(
-    <div>
+    <div className="form-container">
         <form onSubmit = {handleSubmit}>
             <label>enter your notes: </label>
             <input onChange ={handleChangeText}  />
