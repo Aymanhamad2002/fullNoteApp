@@ -10,6 +10,12 @@ const removeNote = (id) => {
     const request = axios.delete(fullUrl)
     return request.then(response => response.data)
 }
+const addNote = (newObject) =>{
+    const request = axios.post(baseUrl,newObject)
+    return request.then(response => response.data)
+}
 export default {
-    getAll,removeNote,
+    getAll,
+    removeNote,
+    addNote,
 }
