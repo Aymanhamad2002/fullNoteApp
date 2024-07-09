@@ -5,6 +5,15 @@ import Helper from "../services/helper";
 
 const App = () => {
   const [notes,setNotes] = useState(null)
+
+  const handleDelete = (id) =>{
+  Helper
+  .removeNote(id)
+  .then(deletedNote => 
+    setNotes(notes.filter(note => note.id !== deletedNote.id ))
+  )
+
+  }
   useEffect(()=>{
     Helper
     .getAll()
@@ -20,7 +29,7 @@ const App = () => {
     return(
     <div>
       <Header text = "Notes"/>
-      <Notes data ={notes} />
+      <Notes data ={notes} handleDelete ={handleDelete}/>
 
     </div>)
 

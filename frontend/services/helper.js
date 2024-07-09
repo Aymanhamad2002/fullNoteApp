@@ -5,6 +5,11 @@ const getAll = ()=>{
     const request = axios.get(baseUrl)
     return request.then(response =>response.data)
 }
+const removeNote = (id) => {
+    const fullUrl = `${baseUrl}/${id}`
+    const request = axios.delete(fullUrl)
+    return request.then(response => response.data)
+}
 export default {
-    getAll
+    getAll,removeNote,
 }
