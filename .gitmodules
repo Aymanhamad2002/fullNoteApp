@@ -1,0 +1,3 @@
+[submodule "backendSimple"]
+	path = backendSimple
+	url = git@github.com:Aymanhamad2002/backendSimple.git
