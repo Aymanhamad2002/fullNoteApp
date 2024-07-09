@@ -7,6 +7,16 @@ import AddingForm from "./components/AddingForm";
 const App = () => {
   const [notes,setNotes] = useState(null)
   const [newContent,setNewContent] = useState(null)
+  const handleImportanceChange = (id) => {
+    const note = notes.find(note => note.id ===id)
+    const newNote = {...note,important :!note.important}
+    Helper
+      .updateImportance(id,newNote)
+      .then(updatedNote => {
+        
+        setNotes(notes.map(note => note.id !== id ? note : updatedNote))})
+
+  }
 
   const handleDelete = (id) =>{
   Helper
@@ -35,7 +45,7 @@ const App = () => {
     Helper
     .getAll()
     .then(initialData => {
-      console.log(initialData)
+      
       setNotes(initialData)})
       
   },[])
@@ -47,7 +57,7 @@ const App = () => {
     <div>
       <Header text = "Notes"/>
       <AddingForm handleChangeText={handleChangeText} handleSubmit={handleSubmit}/>
-      <Notes data ={notes} handleDelete ={handleDelete}/>
+      <Notes data ={notes} handleDelete ={handleDelete} handleImportanceChange ={handleImportanceChange}/>
       
 
     </div>)

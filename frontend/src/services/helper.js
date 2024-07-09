@@ -14,8 +14,15 @@ const addNote = (newObject) =>{
     const request = axios.post(baseUrl,newObject)
     return request.then(response => response.data)
 }
+const updateImportance = (id,newObject) =>{
+    const fullUrl = `${baseUrl}/${id}`
+    const request = axios.put(fullUrl,newObject)
+    return request.then(response => response.data)
+
+}
 export default {
     getAll,
     removeNote,
     addNote,
+    updateImportance
 }
