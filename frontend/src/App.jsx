@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import Notes from "../components/Notes";
-import Header from "../components/Header";
-import Helper from "../services/helper";
+import Notes from "./components/Notes";
+import Header from "./components/Header";
+import Helper from "./services/helper";
 
 const App = () => {
   const [notes,setNotes] = useState(null)
