@@ -3,11 +3,13 @@ import Notes from "./components/Notes";
 import Header from "./components/Header";
 import Helper from "./services/helper";
 import AddingForm from "./components/AddingForm";
+import Notification from "./components/Notification";
 
 const App = () => {
   const [notes,setNotes] = useState(null)
   const [newContent,setNewContent] = useState(null)
   const [showAll,setShowAll] = useState(true)
+  const [notifcation,setNotification] = useState(null)
 
   const notesToShow = showAll ? notes : notes.filter(note => note.important == true) 
   
@@ -28,8 +30,12 @@ const App = () => {
   const handleDelete = (id) =>{
   Helper
   .removeNote(id)
-  .then(deletedNote => 
+  .then(deletedNote => {
+
     setNotes(notes.filter(note => note.id !== deletedNote.id ))
+    setNotification(`${deletedNote.content} removed from the list `)
+    setTimeout(() => {setNotification(null)},5000)
+  }
   )
   }
   const handleSubmit = (event)=>{
@@ -40,7 +46,16 @@ const App = () => {
     }
     Helper
     .addNote(newNote)
-    .then(addedNote => setNotes(notes.concat(addedNote)))
+    .then(addedNote =>{
+       setNotes(notes.concat(addedNote))
+       setNewContent('')
+
+
+    })
+    .catch(error =>{
+      setNotification(error.response.data.error)
+      setTimeout(() => {setNotification(null)},5000)
+    })
 
   }
   const handleChangeText = (event) => {
@@ -63,6 +78,7 @@ const App = () => {
     return(
     <div>
       <Header text = "Notes"/>
+      <Notification message ={notifcation}/>
       <AddingForm handleChangeText={handleChangeText} handleSubmit={handleSubmit}/>
       <button onClick={handleShowAll}>show {showAll ? "only important " : "all" }</button>
       <Notes data ={notesToShow} handleDelete ={handleDelete} handleImportanceChange ={handleImportanceChange}/>
