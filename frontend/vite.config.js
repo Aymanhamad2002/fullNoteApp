@@ -12,4 +12,14 @@ export default defineConfig({
       },
     }
   },
+  test: {
+    environment: 'jsdom',
+    globals: true,
+    setupFiles: './testSetup.js', 
+    coverage: {
+      reporter: ['text', 'lcov'],
+      reportsDirectory: 'coverage',
+      include: ['src/**/*.jsx'],  // Include your source files
+    }
+  }
 })

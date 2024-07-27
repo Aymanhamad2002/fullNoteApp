@@ -1,5 +1,11 @@
 import axios from "axios";
 const baseUrl = '/api/notes'
+let token =  0 
+
+const setToken  = newToken => {
+    token = `Bearer ${newToken}`
+}
+
 
 const getAll = ()=>{
     const request = axios.get(baseUrl)
@@ -10,9 +16,12 @@ const removeNote = (id) => {
     const request = axios.delete(fullUrl)
     return request.then(response => response.data)
 }
-const addNote = (newObject) =>{
-    const request = axios.post(baseUrl,newObject)
-    return request.then(response => response.data)
+const addNote = async newObject =>{
+    const config = {
+        headers:{Authorization:token}
+    }
+    const response = await axios.post(baseUrl,newObject,config)
+    return response.data
 }
 const updateImportance = (id,newObject) =>{
     const fullUrl = `${baseUrl}/${id}`
@@ -24,5 +33,6 @@ export default {
     getAll,
     removeNote,
     addNote,
-    updateImportance
+    updateImportance,
+    setToken,
 }
