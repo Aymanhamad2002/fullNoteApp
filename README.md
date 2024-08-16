@@ -22,4 +22,4 @@ A simple note management app where users can register, log in, create, delete, a
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/note-management-app.git
+   git clone (https://github.com/Aymanhamad2002/fullNoteApp.git)
